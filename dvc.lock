@@ -1,0 +1,57 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python scripts/data_preprocessing.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 31d078de550f8ab719bad2e1acb447e7
+      size: 210
+    - path: scripts/data_preprocessing.py
+      hash: md5
+      md5: c82df39c7d808280837a9de1997750cc
+      size: 979
+    outs:
+    - path: data/processed/processed_housing.csv
+      hash: md5
+      md5: 6afd6330525bd0dbf3e4a1b4addf9aa3
+      size: 568086
+  train:
+    cmd: python scripts/train_model.py
+    deps:
+    - path: data/processed/processed_housing.csv
+      hash: md5
+      md5: 6afd6330525bd0dbf3e4a1b4addf9aa3
+      size: 568086
+    - path: params.yaml
+      hash: md5
+      md5: 31d078de550f8ab719bad2e1acb447e7
+      size: 210
+    - path: scripts/train_model.py
+      hash: md5
+      md5: 781588d247af6fe36165e7ce7ececc7f
+      size: 1224
+    outs:
+    - path: models/house_price_model.pkl
+      hash: md5
+      md5: 50365359be2d64543c31ce5c8bb9fcfe
+      size: 486561
+  evaluate:
+    cmd: python scripts/evaluate_model.py
+    deps:
+    - path: data/processed/processed_housing.csv
+      hash: md5
+      md5: 6afd6330525bd0dbf3e4a1b4addf9aa3
+      size: 568086
+    - path: models/house_price_model.pkl
+      hash: md5
+      md5: 50365359be2d64543c31ce5c8bb9fcfe
+      size: 486561
+    - path: params.yaml
+      hash: md5
+      md5: 31d078de550f8ab719bad2e1acb447e7
+      size: 210
+    - path: scripts/evaluate_model.py
+      hash: md5
+      md5: c21544c85aa1aa6bafd1e624865f27c1
+      size: 949

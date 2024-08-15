@@ -1,0 +1,25 @@
+stages:
+  preprocess:
+    cmd: python scripts/data_preprocessing.py
+    deps:
+      - scripts/data_preprocessing.py
+      - params.yaml
+    outs:
+      - data/processed/processed_housing.csv
+
+  train:
+    cmd: python scripts/train_model.py
+    deps:
+      - scripts/train_model.py
+      - data/processed/processed_housing.csv
+      - params.yaml
+    outs:
+      - models/house_price_model.pkl
+
+  evaluate:
+    cmd: python scripts/evaluate_model.py
+    deps:
+      - scripts/evaluate_model.py
+      - models/house_price_model.pkl
+      - data/processed/processed_housing.csv
+      - params.yaml

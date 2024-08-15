@@ -1,0 +1,9 @@
+data_path: data/raw/housing.csv
+processed_data_path: data/processed/processed_housing.csv
+model_path: models/house_price_model.pkl
+
+train:
+  test_size: 0.2
+  random_state: 42
+  n_estimators: 100
+  max_depth: 5
