@@ -53,3 +53,4 @@ jobs:
       run: |
         ssh user@server_ip 'docker pull ${{ secrets.DOCKER_USERNAME }}/house-price-prediction && docker run -d -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/house-price-prediction'
 
+
